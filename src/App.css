@@ -1,14 +1,12 @@
 *,
 ::before,
 ::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 header {
@@ -54,6 +52,7 @@ header {
 }
 
 .taskContainer {
+    position: relative; /* Add position relative */
     flex: 1;
     margin-top: 1rem;
     margin: 0 0.2rem;
@@ -81,16 +80,44 @@ header {
     padding-left: 0.5rem;
 }
 
-.createNewButton, .createNewInput {
-    margin-top: 1rem;
-    margin: 0 0.2rem;
-    font-size: 1rem;
-    padding: 1rem 0;
-    cursor: pointer;
-    text-align: center;
+.editButton {
+    position: absolute; /* Position absolutely */
+    bottom: 5px; /* Adjust bottom position */
+    right: 5px; /* Adjust right position */
+    background-color: white;
+    border: none;
+    font-size: 0.8rem;
 }
 
-/* // Modal Css */
+.editButton:hover {
+  font-size: 1rem;
+}
+
+.createNewButton,
+.createInput,
+.deleteButton {
+    margin-top: 0.8rem;
+    margin: 0 0.1rem;
+    font-size: 1rem;
+    padding: 0.8rem 0;
+    cursor: pointer;
+}
+
+.createNewButton:hover {
+  color: rgb(255, 255, 255);
+}
+
+.deleteButton:hover  {
+  color: black !important;
+  background-color: rgb(255, 72, 72) !important;
+}
+
+.icons {
+  font-size: 1.4rem;
+  vertical-align: middle;
+}
+
+/* // Modal CSS */
 
 /* Hidden by default */
 .modal {
@@ -103,29 +130,35 @@ header {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Modal content */
-  .modal-content {
+}
+
+/* Modal content */
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; 
-  }
-  
-  /* Close button */
-  .close {
-    color: #aaa;
+    width: 80%;
+}
+
+/* Close button */
+.close {
+    color: #ffffff;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
+    margin-top: -10px;
+    margin-right: 3px;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(181, 181, 181);
     text-decoration: none;
     cursor: pointer;
-  }
-  
+}
+
+.taskContainer.modalOpen:hover {
+  color: inherit;
+  cursor: default;
+}

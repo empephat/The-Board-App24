@@ -3,7 +3,7 @@ import React from 'react';
 import Card from './Card';
 import CreateNewTask from './CreateNewTask';
 
-const Column = ({ title, tasks, id, handleAddTask }) => {
+const Column = ({ title, tasks, id, handleAddTask, handleDeleteTask }) => {
   return (
     <div className="columnContainer">
       <p className='title'>{title}</p>
@@ -22,7 +22,7 @@ const Column = ({ title, tasks, id, handleAddTask }) => {
             }}
           >
             {tasks.map((task, index) => (
-              <Card key={task.id} index={index} task={task} />
+              <Card key={task.id} index={index} task={task} title={title}  handleDeleteTask={handleDeleteTask}/>
             ))}
             {provided.placeholder}
           </div>

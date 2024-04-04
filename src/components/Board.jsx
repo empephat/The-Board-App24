@@ -8,19 +8,6 @@ const Board = () => {
   const [inProgress, setInProgress] = useState([]);
   const [complete, setComplete] = useState([]);
 
-  // JSON Placeholder with a random todo list
-  // useEffect(() => {
-  //   
-  //   const limit = 10; 
-  //   fetch(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`)
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       setInComplete(json.filter((task) => !task.completed));
-  //       setInProgress(json.filter((task) => task.completed && task.id % 2 === 0)); 
-  //       setComplete(json.filter((task) => task.completed && task.id % 2 !== 0));
-  //     });
-  // }, []);
-
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -117,15 +104,20 @@ const Board = () => {
     document.getElementById("newTaskInput").value = ""; 
   };
 
+  const handleDeleteTask = (taskId) => {
+    setInComplete(prevState => prevState.filter(task => task.id !== taskId));
+    setInProgress(prevState => prevState.filter(task => task.id !== taskId));
+    setComplete(prevState => prevState.filter(task => task.id !== taskId));
+  };
 
 
   return (
     <>
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className='boardContainer'>
-        <Column title={"TO DO"} tasks={inComplete} id={"1"} handleAddTask={handleAddTask}/>
-        <Column title={"IN PROGRESS"} tasks={inProgress} id={"2"} />
-        <Column title={"DONE"} tasks={complete} id={"3"} />
+        <Column title={"TO DO"} tasks={inComplete} id={"1"} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask}/>
+        <Column title={"IN PROGRESS"} tasks={inProgress} id={"2"} handleDeleteTask={handleDeleteTask}/>
+        <Column title={"DONE"} tasks={complete} id={"3"} handleDeleteTask={handleDeleteTask}/>
       </div>
     </DragDropContext>
     </>
