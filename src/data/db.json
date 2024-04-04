@@ -1,0 +1,64 @@
+{
+  "tasks": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "Göra react app",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 2,
+      "title": "Mixa ny låt",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 3,
+      "title": "Blanda en smoothie",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 4,
+      "title": "Koka ägg 5min",
+      "completed": true
+    },
+    {
+      "userId": 1,
+      "id": 5,
+      "title": "Thaiboxning",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 6,
+      "title": "Gejma Zelda",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 7,
+      "title": "Sova",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 8,
+      "title": "Cykla till Stockholm",
+      "completed": true
+    },
+    {
+      "userId": 1,
+      "id": 9,
+      "title": "Skriva LIA-ansökan..",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 10,
+      "title": "Vårstädning",
+      "completed": true
+    }
+  ]
+}

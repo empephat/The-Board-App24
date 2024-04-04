@@ -1,0 +1,131 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    text-align: center;
+    font-size: 3rem;
+    padding: 3rem 0;
+    background-color: #359BFC;
+    color: white;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.boardContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-top: 2rem;
+}
+
+.columnContainer {
+    flex: 1;
+    margin: 0 10px; 
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; 
+    flex-direction: column; 
+}
+
+.title {
+    background-color: #359BFC;
+    margin-top: 1rem;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.taskContainer {
+    flex: 1;
+    margin-top: 1rem;
+    margin: 0 0.2rem;
+    margin-bottom: 0.2rem;
+    text-align: center;
+    font-size: 1.1rem;
+    cursor: grab;
+    pointer-events: auto;
+    border-radius: 3%;
+    overflow-y: auto;
+}
+
+.taskContainer:hover {
+    color: #7c7b7b;
+}
+
+.dateTime {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+}
+
+.idNumber {
+    text-align: left;
+    font-size: 0.9rem;
+    padding-left: 0.5rem;
+}
+
+.createNewButton, .createNewInput {
+    margin-top: 1rem;
+    margin: 0 0.2rem;
+    font-size: 1rem;
+    padding: 1rem 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* // Modal Css */
+
+/* Hidden by default */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Modal content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+  }
+  
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
