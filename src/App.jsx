@@ -1,14 +1,19 @@
 import './App.css';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Board from './components/Board';
+import { DarkModeProvider } from './components/DarkModeContext';
 
 function App() {
   return (
     <>
-    <Header />
-    <main className='content'>
+    <DarkModeProvider>
+     <Header />
+       <main className='content'>
         <Board />
-    </main>
+      </main>
+      <Footer />
+    </DarkModeProvider>
     </>
   );
 }

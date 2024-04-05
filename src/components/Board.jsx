@@ -1,6 +1,8 @@
 import { DragDropContext } from 'react-beautiful-dnd';
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import Column from './Column';
+import BoardContent from './BoardContent';
 import api from '../api/tasks'
 
 const Board = () => {
@@ -110,17 +112,19 @@ const Board = () => {
     setComplete(prevState => prevState.filter(task => task.id !== taskId));
   };
 
-
   return (
-    <>
-    <DragDropContext onDragEnd={handleDragEnd}>
-      <div className='boardContainer'>
-        <Column title={"TO DO"} tasks={inComplete} id={"1"} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask}/>
-        <Column title={"IN PROGRESS"} tasks={inProgress} id={"2"} handleDeleteTask={handleDeleteTask}/>
-        <Column title={"DONE"} tasks={complete} id={"3"} handleDeleteTask={handleDeleteTask}/>
-      </div>
-    </DragDropContext>
-    </>
+    <Router>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <div className='boardContainer'>
+          <Routes>
+            <Route path="/" element={<BoardContent inComplete={inComplete} inProgress={inProgress} complete={complete} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} />} />
+            <Route path="/todo" element={<Column title={<Link to="/todo">TO DO</Link>} tasks={inComplete} id="1" handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} />} />
+            <Route path="/inprogress" element={<Column title={<Link to="/inprogress">IN PROGRESS</Link>} tasks={inProgress} id="2" handleDeleteTask={handleDeleteTask} />} />
+            <Route path="/done" element={<Column title={<Link to="/done">DONE</Link>} tasks={complete} id="3" handleDeleteTask={handleDeleteTask} />} />
+          </Routes>
+        </div>
+      </DragDropContext>
+    </Router>
   );  
 };
 

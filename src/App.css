@@ -9,12 +9,28 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-header {
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    font-size: 3rem;
-    padding: 3rem 0;
+    font-size: 2rem;
+    padding: 2rem 0;
     background-color: #359BFC;
     color: white;
+}
+  
+.header:hover {
+    cursor: pointer;
+}
+
+.icon-container {
+    margin-top: 0.8rem;
+    margin-left: 2rem;
+}
+
+.icon-container:hover {
+    cursor: pointer;
 }
 
 .content {
@@ -51,8 +67,18 @@ header {
     color: white;
 }
 
+.title > a {
+    color: inherit;
+    text-decoration: none;   
+}
+
+p > a {
+    color: inherit;
+    text-decoration: none;   
+}
+
 .taskContainer {
-    position: relative; /* Add position relative */
+    position: relative;
     flex: 1;
     margin-top: 1rem;
     margin: 0 0.2rem;
@@ -81,9 +107,9 @@ header {
 }
 
 .editButton {
-    position: absolute; /* Position absolutely */
-    bottom: 5px; /* Adjust bottom position */
-    right: 5px; /* Adjust right position */
+    position: absolute; 
+    bottom: 5px; 
+    right: 5px; 
     background-color: white;
     border: none;
     font-size: 0.8rem;
@@ -117,9 +143,32 @@ header {
   vertical-align: middle;
 }
 
-/* // Modal CSS */
 
-/* Hidden by default */
+.columnContainer .title {
+    background-color: #359BFC;
+}
+  
+
+.columnContainer.dark-mode .title {
+    background-color: #fc8135; 
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 2rem 0;
+    background-color: #359BFC;
+    color: white;
+}
+
+/* // Modal CSS */
 .modal {
     display: none;
     position: fixed;
@@ -132,7 +181,6 @@ header {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal content */
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto; 
@@ -141,7 +189,6 @@ header {
     width: 80%;
 }
 
-/* Close button */
 .close {
     color: #ffffff;
     float: right;

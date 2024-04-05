@@ -1,13 +1,17 @@
 import { Droppable } from 'react-beautiful-dnd';
-import React from 'react';
+import { useContext } from 'react';
 import Card from './Card';
 import CreateNewTask from './CreateNewTask';
+import DarkModeContext from "./DarkModeContext";
 
 const Column = ({ title, tasks, id, handleAddTask, handleDeleteTask }) => {
+
+  const { isDarkMode } = useContext(DarkModeContext);
+
+
   return (
-    <div className="columnContainer">
+    <div className={`columnContainer ${isDarkMode ? 'dark-mode' : ''}`}>
       <p className='title'>{title}</p>
-      
       <Droppable droppableId={id}>
         {(provided, snapshot) => (
           <div
@@ -22,7 +26,7 @@ const Column = ({ title, tasks, id, handleAddTask, handleDeleteTask }) => {
             }}
           >
             {tasks.map((task, index) => (
-              <Card key={task.id} index={index} task={task} title={title}  handleDeleteTask={handleDeleteTask}/>
+              <Card key={task.id} index={index} task={task} title={title} handleDeleteTask={handleDeleteTask}/>
             ))}
             {provided.placeholder}
           </div>
