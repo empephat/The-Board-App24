@@ -1,16 +1,17 @@
+import { useContext, useMemo, useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import { useContext } from 'react';
 import Card from './Card';
-import CreateNewTask from './CreateNewTask';
-import DarkModeContext from "./DarkModeContext";
+import ColorChangeContext from "./ColorChangeContext";
 
-const Column = ({ title, tasks, id, handleAddTask, handleDeleteTask }) => {
+const Column = ({ title, tasks, id, handleSaveChanges, handleDeleteTask }) => {
+  const { isColorChange } = useContext(ColorChangeContext);
 
-  const { isDarkMode } = useContext(DarkModeContext);
-
+  const columnStyle = useMemo(() => ({
+    backgroundColor: isColorChange ? 'var(--orange-bg-color)' : 'var(--blue-bg-color)',
+  }), [isColorChange]);
 
   return (
-    <div className={`columnContainer ${isDarkMode ? 'dark-mode' : ''}`}>
+    <div className='columnContainer' style={columnStyle}>
       <p className='title'>{title}</p>
       <Droppable droppableId={id}>
         {(provided, snapshot) => (
@@ -18,23 +19,25 @@ const Column = ({ title, tasks, id, handleAddTask, handleDeleteTask }) => {
             ref={provided.innerRef}
             {...provided.droppableProps}
             style={{
-              // Change background when you are moving a task
               background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
-              // Make sure the container is filled so it's easier to drag
               width: "100%",
               height: "100%"
             }}
           >
             {tasks.map((task, index) => (
-              <Card key={task.id} index={index} task={task} title={title} handleDeleteTask={handleDeleteTask}/>
+              <Card 
+              key={task.id} 
+              index={index} 
+              task={task} 
+              title={title} 
+              handleSaveChanges={handleSaveChanges} 
+              handleDeleteTask={handleDeleteTask}/>
             ))}
-            {provided.placeholder}
+              {provided.placeholder}
           </div>
         )}
       </Droppable>
-      {id === "1" && (
-        <CreateNewTask handleAddTask={handleAddTask}/>
-      )}
+ 
     </div>
   );
 }

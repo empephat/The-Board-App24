@@ -1,17 +1,16 @@
-import { useContext } from 'react';
-import { FaHome } from "react-icons/fa";
-import DarkModeContext from "./DarkModeContext";
+import { useContext, useMemo } from 'react';
+import ColorChangeContext from "./ColorChangeContext";
 
-const Header = () => {
+const Header = ( handleAddTask ) => {
+  const { isColorChange } = useContext(ColorChangeContext);
 
-  const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
+  const headerStyle = useMemo(() => ({
+    backgroundColor: isColorChange ? 'var(--orange-bg-color)' : 'var(--blue-bg-color)',
+  }), [isColorChange]);
 
   return (
-    <header className="header" style={{ backgroundColor: isDarkMode ? '#fc8135' : '#359BFC' }}>
-      <h1>THE BOARD APP</h1>
-        <div className="icon-container">
-          <FaHome />
-        </div>
+    <header className="header" style={headerStyle}>
+      <h1>MY BOARD APP</h1>
     </header>
   );
 };

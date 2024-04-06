@@ -1,8 +1,13 @@
+//Drag & Drop
 import { DragDropContext } from 'react-beautiful-dnd';
+//React
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+//Components
 import Column from './Column';
 import BoardContent from './BoardContent';
+import CreateNewTask from './CreateNewTask';
+//Data
 import api from '../api/tasks'
 
 const Board = () => {
@@ -102,8 +107,26 @@ const Board = () => {
       completed: false
     };
     setInComplete(prevState => [...prevState, newTask]);
-    // Clear the input field
     document.getElementById("newTaskInput").value = ""; 
+  };
+
+  const handleSaveChanges = (taskId, updatedTask, editedTitle) => {
+    // Determine the column ID of the updated task
+    const columnId = updatedTask.completed ? (updatedTask.id % 2 === 0 ? '2' : '3') : '1';
+    // Update the appropriate column state based on the column ID
+    switch (columnId) {
+      case '1': // TO DO column
+        setInComplete(prevTasks => prevTasks.map(prevTask => (prevTask.id === taskId ? { ...updatedTask, title: editedTitle } : prevTask)));
+        break;
+      case '2': // IN PROGRESS column
+        setInProgress(prevTasks => prevTasks.map(prevTask => (prevTask.id === taskId ? { ...updatedTask, title: editedTitle } : prevTask)));
+        break;
+      case '3': // DONE column
+        setComplete(prevTasks => prevTasks.map(prevTask => (prevTask.id === taskId ? { ...updatedTask, title: editedTitle } : prevTask)));
+        break;
+      default:
+        break;
+    }
   };
 
   const handleDeleteTask = (taskId) => {
@@ -113,18 +136,31 @@ const Board = () => {
   };
 
   return (
+    <main className='content'>
     <Router>
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className='boardContainer'>
           <Routes>
-            <Route path="/" element={<BoardContent inComplete={inComplete} inProgress={inProgress} complete={complete} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} />} />
-            <Route path="/todo" element={<Column title={<Link to="/todo">TO DO</Link>} tasks={inComplete} id="1" handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} />} />
-            <Route path="/inprogress" element={<Column title={<Link to="/inprogress">IN PROGRESS</Link>} tasks={inProgress} id="2" handleDeleteTask={handleDeleteTask} />} />
-            <Route path="/done" element={<Column title={<Link to="/done">DONE</Link>} tasks={complete} id="3" handleDeleteTask={handleDeleteTask} />} />
+            <Route path="/" element={
+            <BoardContent inComplete={inComplete} inProgress={inProgress} complete={complete} 
+            handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} handleSaveChanges={handleSaveChanges} />} />
+            <Route path="/todo" element={
+            <Column title={<Link to="/todo">TO DO</Link>} tasks={inComplete} id="1" 
+            handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} handleSaveChanges={handleSaveChanges} />} />
+            <Route path="/inprogress" element={
+            <Column title={<Link to="/inprogress">IN PROGRESS</Link>} tasks={inProgress} id="2" 
+            handleDeleteTask={handleDeleteTask} handleSaveChanges={handleSaveChanges} />} />
+            <Route path="/done" element={
+            <Column title={<Link to="/done">DONE</Link>} tasks={complete} id="3" 
+            handleDeleteTask={handleDeleteTask} handleSaveChanges={handleSaveChanges} />} />
           </Routes>
         </div>
       </DragDropContext>
     </Router>
+    <div className="createNewTaskContainer">
+        <CreateNewTask handleAddTask={handleAddTask}/>
+      </div>
+    </main>
   );  
 };
 

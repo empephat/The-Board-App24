@@ -1,14 +1,18 @@
-import { useContext } from 'react';
-import { MdOutlineDarkMode, MdDarkMode } from "react-icons/md";
-import DarkModeContext from "./DarkModeContext";
+import { useContext, useMemo } from 'react';
+import { IoColorPaletteOutline, IoColorPalette } from "react-icons/io5";
+import ColorChangeContext from "./ColorChangeContext";
 
 const Footer = () => {
-    const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
+    const { isColorChange, toggleColorChange } = useContext(ColorChangeContext);
+
+    const footerStyle = useMemo(() => ({
+        backgroundColor: isColorChange ? 'var(--orange-bg-color)' : 'var(--blue-bg-color)',
+      }), [isColorChange]);
 
     return (
-        <footer style={{ backgroundColor: isDarkMode ? '#fc8135' : '#359BFC' }}>
-            <div onClick={toggleDarkMode}>
-            {isDarkMode ? <MdDarkMode /> : <MdOutlineDarkMode />}
+        <footer style={footerStyle}>
+            <div onClick={toggleColorChange}>
+            {isColorChange ? <IoColorPaletteOutline /> : <IoColorPalette />}
             </div>
         </footer>
     );

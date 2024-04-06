@@ -2,20 +2,17 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Board from './components/Board';
-import { DarkModeProvider } from './components/DarkModeContext';
+import { ColorChangeProvider } from './components/ColorChangeContext';
 
 function App() {
   return (
     <>
-    <DarkModeProvider>
+    <ColorChangeProvider>
      <Header />
-       <main className='content'>
         <Board />
-      </main>
       <Footer />
-    </DarkModeProvider>
+    </ColorChangeProvider>
     </>
   );
 }
-
 export default App
