@@ -106,7 +106,7 @@ p > a {
     left: 5px; 
     background-color: white;
     border: none;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .deleteIcon {
@@ -115,11 +115,11 @@ p > a {
     right: 5px; 
     background-color: white;
     border: none;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .editIcon:hover, .deleteIcon:hover {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .editIcon.dragging, .deleteIcon.dragging {
@@ -191,7 +191,7 @@ footer {
     align-items: center;
     text-align: center;
     font-size: 2.5rem;
-    padding: 2rem 0;
+    padding: 1rem 0;
     background-color: #359BFC;
     color: white;
 }
@@ -251,3 +251,23 @@ footer {
     animation: shake 0.5s ease-in-out;
   }
   
+
+  /* Media Queries */
+
+  @media screen and (max-width: 900px) {
+    .boardContainer {
+      display: flex;
+      flex-direction: column; 
+    }
+
+    .columnContainer {
+        margin-bottom: 2rem;
+    }
+
+    .columnContainer:last-child {
+        margin-bottom: 10rem;
+    }
+    .editIcon, .deleteIcon {
+        font-size: 1.4rem;
+    }
+  }

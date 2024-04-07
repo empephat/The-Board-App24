@@ -1,4 +1,6 @@
+//Component
 import Column from './Column';
+//Routing
 import { Link } from  'react-router-dom'
 
 const BoardContent = ({ inComplete, inProgress, complete, handleAddTask, handleSaveChanges, handleDeleteTask }) => {

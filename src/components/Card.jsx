@@ -40,6 +40,10 @@ const Card = ({ task, index, title, handleSaveChanges, handleDeleteTask }) => {
     handleCloseModal();
   };
 
+  const handleChange = (e) => {
+    setEditedTitle(e.target.value);
+  };
+
   const removeTask = () => {
     handleDeleteTask(task.id);
     handleCloseModal(); 
@@ -67,16 +71,12 @@ const Card = ({ task, index, title, handleSaveChanges, handleDeleteTask }) => {
               <button className={`deleteIcon ${snapshot.isDragging ? 'dragging' : ''}`} onClick={removeTask}><MdDelete /></button>
           <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
           <p style={{ ...cardStyle, ...{ color: 'white', borderRadius: '10px' } }}>{title}</p>
-
-            <p contentEditable={true} spellCheck={false} onInput={(e) => setEditedTitle(e.target.textContent)}
-            style={{fontSize: '2rem'}}>{editedTitle}</p>
-
+            {/* <p contentEditable={true} spellCheck={false} onInput={(e) => setEditedTitle(e.target.textContent)}
+            style={{fontSize: '2rem'}}>{editedTitle}</p> */}
+            <input type="text" value={editedTitle} spellCheck={false} onChange={handleChange} style={{fontSize: '1.8rem', border: 'none', textAlign: 'center'}}/>
             <p className='dateTime'>{formattedDate} </p>
-
             <br/>
-
             <p className='description' contentEditable={true} spellCheck={false}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quae cupiditate dignissimos ex omnis ipsum nisi corporis nam ipsa laboriosam illum consectetur earum fuga quasi rem. Modi esse quos nesciunt.</p>
-
             <button onClick={saveTask} className='saveButton'>
               <IoMdAddCircle className='icons' style={{marginRight: '3px', marginTop: '-3px'}}/>
               Save Task

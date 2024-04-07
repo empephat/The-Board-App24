@@ -1,7 +1,9 @@
+// React
 import { useContext, useMemo } from 'react';
+// Context
 import ColorChangeContext from "./ColorChangeContext";
 
-const Header = ( handleAddTask ) => {
+const Header = () => {
   const { isColorChange } = useContext(ColorChangeContext);
 
   const headerStyle = useMemo(() => ({

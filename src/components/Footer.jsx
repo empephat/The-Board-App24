@@ -1,5 +1,8 @@
+// React
 import { useContext, useMemo } from 'react';
+// Icons
 import { IoColorPaletteOutline, IoColorPalette } from "react-icons/io5";
+// Context
 import ColorChangeContext from "./ColorChangeContext";
 
 const Footer = () => {

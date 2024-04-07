@@ -1,6 +1,10 @@
-import { useContext, useMemo, useState } from 'react';
+// React
+import { useContext, useMemo } from 'react';
+// Drag & Drop
 import { Droppable } from 'react-beautiful-dnd';
+// Component
 import Card from './Card';
+// Context
 import ColorChangeContext from "./ColorChangeContext";
 
 const Column = ({ title, tasks, id, handleSaveChanges, handleDeleteTask }) => {
@@ -37,7 +41,6 @@ const Column = ({ title, tasks, id, handleSaveChanges, handleDeleteTask }) => {
           </div>
         )}
       </Droppable>
- 
     </div>
   );
 }

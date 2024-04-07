@@ -39,14 +39,10 @@ const Board = () => {
   
   const handleDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    // Do nothing if the task isn't moved
     if (!destination) return;
-    // If dropped in the same column, do nothing
     if (destination.droppableId === source.droppableId) return;
-    // Find the source and destination column IDs
     const sourceColumnId = source.droppableId;
     const destinationColumnId = destination.droppableId;
-    // Find the task based on the source column ID
     let task;
     switch (sourceColumnId) {
       case '1': // TO DO column
@@ -95,11 +91,8 @@ const Board = () => {
 
   const handleAddTask = () => {
     const newTaskTitle = document.getElementById("newTaskInput").value;
-    // Do nothing if task title is empty or contains only whitespace
     if (!newTaskTitle.trim()) return; 
-    // Get the maximum ID from existing tasks
     const lastTaskId = Math.max(...inComplete.map(task => task.id)); 
-    // Increment the last ID by 1
     const newTaskId = lastTaskId + 1; 
     const newTask = {
       id: newTaskId,
@@ -111,9 +104,7 @@ const Board = () => {
   };
 
   const handleSaveChanges = (taskId, updatedTask, editedTitle) => {
-    // Determine the column ID of the updated task
     const columnId = updatedTask.completed ? (updatedTask.id % 2 === 0 ? '2' : '3') : '1';
-    // Update the appropriate column state based on the column ID
     switch (columnId) {
       case '1': // TO DO column
         setInComplete(prevTasks => prevTasks.map(prevTask => (prevTask.id === taskId ? { ...updatedTask, title: editedTitle } : prevTask)));
